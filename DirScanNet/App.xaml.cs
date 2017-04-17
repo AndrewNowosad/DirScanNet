@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DirScanNet.Views;
 using System.Windows;
 
 namespace DirScanNet
@@ -12,7 +7,8 @@ namespace DirScanNet
     {
         public App()
         {
-
+            var mainWin = new MainWindow();
+            mainWin.Show();
         }
     }
 }
