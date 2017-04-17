@@ -58,6 +58,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\File.cs" />
+    <Compile Include="Models\Folder.cs" />
+    <Compile Include="Models\FSItem.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -89,7 +92,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
