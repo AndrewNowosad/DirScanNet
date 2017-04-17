@@ -8,10 +8,11 @@ using System.Windows;
 
 namespace DirScanNet
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+
+        }
     }
 }
