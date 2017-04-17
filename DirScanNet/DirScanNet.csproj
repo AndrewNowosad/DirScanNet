@@ -61,6 +61,7 @@
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\Folder.cs" />
     <Compile Include="Models\FSItem.cs" />
+    <Compile Include="Models\FSScanner.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
