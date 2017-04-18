@@ -1,4 +1,5 @@
-﻿using DirScanNet.Views;
+﻿using DirScanNet.ViewModels;
+using DirScanNet.Views;
 using System.Windows;
 
 namespace DirScanNet
@@ -7,8 +8,9 @@ namespace DirScanNet
     {
         public App()
         {
-            var mainWin = new MainWindow();
-            mainWin.Show();
+            var mainVM = new MainVM();
+            var mainView = new MainWindow { DataContext = mainVM };
+            mainView.Show();
         }
     }
 }

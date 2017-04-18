@@ -63,7 +63,9 @@
     <Compile Include="Models\FSItem.cs" />
     <Compile Include="Models\FSScanner.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
+    <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\VMBase.cs" />
+    <Compile Include="ViewModels\WindowVM.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
