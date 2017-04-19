@@ -8,5 +8,7 @@ namespace DirScanNet.Models
         {
             Weight = new FileInfo(path).Length;
         }
+
+        public override string ToString() => $"File: {Name}";
     }
 }
