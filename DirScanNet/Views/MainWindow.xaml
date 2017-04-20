@@ -31,15 +31,13 @@
                        VerticalAlignment="Center"
                        Text="Путь:"/>
 
-            <TextBox Name="TextBoxPath"
+            <TextBox Text="{Binding CurrentPath}"
                      Grid.Column="1" Padding="5"/>
 
             <Button Grid.Column="2"
                     Margin="5,0,0,0" Padding="5"
                     IsDefault="True"
-                    Command="{Binding ScanFolder}"
-                    CommandParameter="{Binding ElementName=TextBoxPath,
-                                               Path=Text}">
+                    Command="{Binding ScanFolder}">
                 Сканировать
             </Button>
         </Grid>

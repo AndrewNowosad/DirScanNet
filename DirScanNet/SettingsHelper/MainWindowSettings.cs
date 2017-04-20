@@ -9,5 +9,7 @@ namespace DirScanNet.SettingsHelper
         public double Height { get; set; } = 500;
         public double Left { get; set; } = 250;
         public double Top { get; set; } = 110;
+
+        public string CurrentPath { get; set; } = @"C:\";
     }
 }
