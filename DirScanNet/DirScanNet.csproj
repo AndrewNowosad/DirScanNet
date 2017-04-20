@@ -62,6 +62,8 @@
     <Compile Include="Models\Folder.cs" />
     <Compile Include="Models\FSItem.cs" />
     <Compile Include="Models\FSScanner.cs" />
+    <Compile Include="SettingsHelper\MainWindowSettings.cs" />
+    <Compile Include="SettingsHelper\Settings.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\VMBase.cs" />

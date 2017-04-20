@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="{Binding Title}"
-        Height="{Binding Height}" Width="{Binding Width}"
-        Top="{Binding Top}" Left="{Binding Left}">
+        WindowState="{Binding WindowState, Mode=TwoWay}"
+        Height="{Binding Height, Mode=TwoWay}" Width="{Binding Width, Mode=TwoWay}"
+        Top="{Binding Top, Mode=TwoWay}" Left="{Binding Left, Mode=TwoWay}">
 
     <Grid>
         <Grid.RowDefinitions>

@@ -76,7 +76,7 @@ namespace DirScanNet.ViewModels
             {
                 return title;
             }
-            private set
+            protected set
             {
                 Set(ref title, value);
             }

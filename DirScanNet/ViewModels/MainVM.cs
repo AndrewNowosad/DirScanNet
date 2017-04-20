@@ -1,4 +1,5 @@
 ﻿using DirScanNet.Models;
+using DirScanNet.SettingsHelper;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -43,7 +44,35 @@ namespace DirScanNet.ViewModels
 
         protected async Task ScanAsync(string path)
         {
+            SaveSettings();
             CurrentFolder = await new FSScanner().GetFolderAsync(path);
+        }
+
+        public MainVM()
+        {
+            Title = "DirScanNet 1.0.0";
+            LoadSettings();
+        }
+
+        void LoadSettings()
+        {
+            var settings = Settings.Instance.MainWindowSettings;
+            WindowState = settings.WindowState;
+            Width = settings.Width;
+            Height = settings.Height;
+            Left = settings.Left;
+            Top = settings.Top;
+        }
+
+        void SaveSettings()
+        {
+            var settings = Settings.Instance.MainWindowSettings;
+            settings.WindowState = WindowState;
+            settings.Width = Width;
+            settings.Height = Height;
+            settings.Left = Left;
+            settings.Top = Top;
+            Settings.Save();
         }
     }
 }
