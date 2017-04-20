@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace DirScanNet.SettingsHelper
@@ -8,6 +9,7 @@ namespace DirScanNet.SettingsHelper
     public sealed class Settings
     {
         static readonly string path = "Settings.xml";
+        static readonly XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces(new[] { new XmlQualifiedName("") });
         static readonly XmlSerializer serializer = new XmlSerializer(typeof(Settings));
 
         static readonly Lazy<Settings> instance = new Lazy<Settings>(LoadSettings);
@@ -28,7 +30,7 @@ namespace DirScanNet.SettingsHelper
         void SaveSettings()
         {
             using (Stream stream = File.Create(path))
-                serializer.Serialize(stream, this);
+                serializer.Serialize(stream, this, namespaces);
         }
 
         public MainWindowSettings MainWindowSettings { get; set; } = new MainWindowSettings();
