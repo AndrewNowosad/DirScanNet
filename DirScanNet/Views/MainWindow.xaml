@@ -48,7 +48,7 @@
             <ItemsControl ItemsSource="{Binding Items}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="2.5">
+                        <Grid Name="ContainerGrid" Margin="2.5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="Auto"/>
@@ -59,7 +59,23 @@
 
                             <TextBlock Grid.Column="1"
                                        Padding="5"
-                                       Text="{Binding Weight, Converter={StaticResource FileLengthConverter}}"/>
+                                       Text="{Binding Weight,
+                                                      Converter={StaticResource FileLengthConverter}}"/>
+
+                            <Grid Grid.ColumnSpan="2" Panel.ZIndex="-1"
+                                  Name="HelperGrid" RenderTransformOrigin="0,0.5">
+                                <Grid.Tag>
+                                    <ScaleTransform ScaleX="{Binding DataContext.MaxWeight,
+                                                                     RelativeSource={RelativeSource FindAncestor,
+                                                                                                    AncestorType=ItemsControl}}"
+                                                    ScaleY="1"/>
+                                </Grid.Tag>
+                                <Grid.RenderTransform>
+                                    <ScaleTransform ScaleX="{Binding Weight}" ScaleY="1"/>
+                                </Grid.RenderTransform>
+                                <Rectangle Fill="LightGreen" RenderTransformOrigin="0,0.5"
+                                           RenderTransform="{Binding Tag.Inverse, ElementName=HelperGrid}"/>
+                            </Grid>
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

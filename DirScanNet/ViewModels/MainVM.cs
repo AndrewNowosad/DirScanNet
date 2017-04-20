@@ -33,6 +33,7 @@ namespace DirScanNet.ViewModels
             {
                 Set(ref currentFolder, value);
                 NotifyPropertyChanged(nameof(Items));
+                NotifyPropertyChanged(nameof(MaxWeight));
             }
         }
 
@@ -43,6 +44,8 @@ namespace DirScanNet.ViewModels
                 return CurrentFolder?.ChildElements.OrderByDescending(item => item.Weight);
             }
         }
+
+        public long MaxWeight => Items.First().Weight;
 
         DelegateCommand scanFolder;
         public ICommand ScanFolder
