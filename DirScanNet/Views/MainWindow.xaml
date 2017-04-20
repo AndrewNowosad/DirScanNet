@@ -3,12 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Converters="clr-namespace:DirScanNet.Views.Converters"
         mc:Ignorable="d"
         Title="{Binding Title}"
         WindowState="{Binding WindowState, Mode=TwoWay}"
         Height="{Binding Height, Mode=TwoWay}" Width="{Binding Width, Mode=TwoWay}"
         Top="{Binding Top, Mode=TwoWay}" Left="{Binding Left, Mode=TwoWay}">
 
+    <Window.Resources>
+        <Converters:FileLengthConverter x:Key="FileLengthConverter"/>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -56,7 +61,7 @@
 
                             <TextBlock Grid.Column="1"
                                        Padding="5"
-                                       Text="{Binding Weight}"/>
+                                       Text="{Binding Weight, Converter={StaticResource FileLengthConverter}}"/>
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
