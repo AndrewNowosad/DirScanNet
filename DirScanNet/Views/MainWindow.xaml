@@ -62,20 +62,15 @@
                                        Text="{Binding Weight,
                                                       Converter={StaticResource FileLengthConverter}}"/>
 
-                            <Grid Grid.ColumnSpan="2" Panel.ZIndex="-1"
-                                  Name="HelperGrid" RenderTransformOrigin="0,0.5">
-                                <Grid.Tag>
-                                    <ScaleTransform ScaleX="{Binding DataContext.MaxWeight,
-                                                                     RelativeSource={RelativeSource FindAncestor,
-                                                                                                    AncestorType=ItemsControl}}"
-                                                    ScaleY="1"/>
-                                </Grid.Tag>
-                                <Grid.RenderTransform>
-                                    <ScaleTransform ScaleX="{Binding Weight}" ScaleY="1"/>
-                                </Grid.RenderTransform>
-                                <Rectangle Fill="LightGreen" RenderTransformOrigin="0,0.5"
-                                           RenderTransform="{Binding Tag.Inverse, ElementName=HelperGrid}"/>
-                            </Grid>
+                            <Viewbox Stretch="Fill" Grid.ColumnSpan="2" Panel.ZIndex="-1">
+                                <Grid Width="{Binding DataContext.MaxWeight,
+                                                      RelativeSource={RelativeSource FindAncestor,
+                                                                                     AncestorType=ItemsControl}}"
+                                      Height="1">
+                                    <Rectangle Width="{Binding Weight}" HorizontalAlignment="Left"
+                                               Fill="LightGreen"/>
+                                </Grid>
+                            </Viewbox>
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
