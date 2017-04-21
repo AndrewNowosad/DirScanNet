@@ -47,7 +47,9 @@
 
         <ScrollViewer Grid.Row="1"
                       Margin="5,0,5,5" Padding="5"
-                      VerticalScrollBarVisibility="Auto">
+                      VerticalScrollBarVisibility="Auto"
+                      Visibility="{Binding IsProcess,
+                                           Converter={StaticResource BoolToHiddenConverter}}">
             <ItemsControl ItemsSource="{Binding Items}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -84,5 +86,12 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
+
+        <ProgressBar Grid.Row="1" Height="10"
+                     VerticalContentAlignment="Center"
+                     IsIndeterminate="True"
+                     Margin="5,0,5,5" Padding="5"
+                     Visibility="{Binding IsProcess,
+                                          Converter={StaticResource BoolToVisibleConverter}}"/>
     </Grid>
 </Window>
