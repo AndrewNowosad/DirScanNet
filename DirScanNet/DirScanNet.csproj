@@ -68,7 +68,9 @@
     <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\VMBase.cs" />
     <Compile Include="ViewModels\WindowVM.cs" />
+    <Compile Include="Views\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Views\Converters\FileLengthConverter.cs" />
+    <Compile Include="Views\Converters\InvertBooleanConverter.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>

@@ -12,6 +12,9 @@
 
     <Window.Resources>
         <Converters:FileLengthConverter x:Key="FileLengthConverter"/>
+        <Converters:InvertBooleanConverter x:Key="InvertBooleanConverter"/>
+        <Converters:BoolToVisibilityConverter x:Key="BoolToHiddenConverter" TrueValue="Hidden" FalseValue="Visible"/>
+        <Converters:BoolToVisibilityConverter x:Key="BoolToVisibleConverter" TrueValue="Visible" FalseValue="Hidden"/>
     </Window.Resources>
     
     <Grid>
@@ -34,9 +37,9 @@
             <TextBox Text="{Binding CurrentPath}"
                      Grid.Column="1" Padding="5"/>
 
-            <Button Grid.Column="2"
+            <Button Grid.Column="2" IsDefault="True"
                     Margin="5,0,0,0" Padding="5"
-                    IsDefault="True"
+                    IsEnabled="{Binding IsProcess, Converter={StaticResource InvertBooleanConverter}}"
                     Command="{Binding ScanFolder}">
                 Сканировать
             </Button>

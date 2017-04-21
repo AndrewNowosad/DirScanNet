@@ -47,6 +47,19 @@ namespace DirScanNet.ViewModels
 
         public long MaxWeight => Items.First().Weight;
 
+        bool isProcess;
+        public bool IsProcess
+        {
+            get
+            {
+                return isProcess;
+            }
+            protected set
+            {
+                Set(ref isProcess, value);
+            }
+        }
+
         DelegateCommand scanFolder;
         public ICommand ScanFolder
         {
@@ -60,8 +73,10 @@ namespace DirScanNet.ViewModels
 
         protected async Task ScanAsync()
         {
+            IsProcess = true;
             SaveSettings();
             CurrentFolder = await new FSScanner().GetFolderAsync(CurrentPath);
+            IsProcess = false;
         }
 
         public MainVM()
