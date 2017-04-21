@@ -71,12 +71,30 @@ namespace DirScanNet.ViewModels
             }
         }
 
+        DelegateCommand openFolder;
+        public ICommand OpenFolder
+        {
+            get
+            {
+                if (openFolder == null)
+                    openFolder = new DelegateCommand(o => Open((FSItem)o));
+                return openFolder;
+            }
+        }
+
         protected async Task ScanAsync()
         {
             IsProcess = true;
             SaveSettings();
             CurrentFolder = await new FSScanner().GetFolderAsync(CurrentPath);
             IsProcess = false;
+        }
+
+        protected void Open(FSItem item)
+        {
+            var folder = item as Folder;
+            if (folder == null) return;
+            CurrentFolder = folder;
         }
 
         public MainVM()
