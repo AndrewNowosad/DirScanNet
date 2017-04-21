@@ -45,7 +45,7 @@ namespace DirScanNet.ViewModels
             }
         }
 
-        public long MaxWeight => Items.First().Weight;
+        public long? MaxWeight => Items?.FirstOrDefault()?.Weight;
 
         bool isProcess;
         public bool IsProcess
