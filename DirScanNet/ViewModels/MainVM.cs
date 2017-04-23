@@ -12,23 +12,14 @@ namespace DirScanNet.ViewModels
         string currentPath;
         public string CurrentPath
         {
-            get
-            {
-                return currentPath;
-            }
-            set
-            {
-                Set(ref currentPath, value);
-            }
+            get => currentPath;
+            set => Set(ref currentPath, value);
         }
 
         Folder currentFolder;
         public Folder CurrentFolder
         {
-            get
-            {
-                return currentFolder;
-            }
+            get => currentFolder;
             set
             {
                 Set(ref currentFolder, value);
@@ -39,10 +30,7 @@ namespace DirScanNet.ViewModels
 
         public IEnumerable<FSItem> Items
         {
-            get
-            {
-                return CurrentFolder?.ChildElements.OrderByDescending(item => item.Weight);
-            }
+            get => CurrentFolder?.ChildElements.OrderByDescending(item => item.Weight);
         }
 
         public long? MaxWeight => Items?.FirstOrDefault()?.Weight;
@@ -50,14 +38,8 @@ namespace DirScanNet.ViewModels
         bool isProcess;
         public bool IsProcess
         {
-            get
-            {
-                return isProcess;
-            }
-            protected set
-            {
-                Set(ref isProcess, value);
-            }
+            get => isProcess;
+            protected set => Set(ref isProcess, value);
         }
 
         DelegateCommand scanFolder;
