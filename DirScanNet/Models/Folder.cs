@@ -7,13 +7,19 @@ namespace DirScanNet.Models
 {
     class Folder : FSItem
     {
-        List<FSItem> childElements;
-        public IReadOnlyList<FSItem> ChildElements => childElements;
+        static public FSItem GetFolder(string path)
+        {
+            if (ItemsCache.ContainsKey(path)) return ItemsCache[path];
+            return new Folder(path);
+        }
 
-        public Folder(string path) : base(path)
+        Folder(string path) : base(path)
         {
             RescanPath();
         }
+
+        List<FSItem> childElements;
+        public IReadOnlyList<FSItem> ChildElements => childElements;
 
         void RescanPath()
         {
@@ -28,9 +34,9 @@ namespace DirScanNet.Models
                 return;
             }
             foreach (var dir in dirs)
-                childElements.Add(new Folder(dir));
+                childElements.Add(GetFolder(dir));
             foreach (var file in Directory.EnumerateFiles(FullPhysicalPath))
-                childElements.Add(new File(file));
+                childElements.Add(File.GetFile(file));
             Weight = childElements.Sum(item => item.Weight);
         }
 

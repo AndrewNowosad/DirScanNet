@@ -7,7 +7,7 @@ namespace DirScanNet.Models
 {
     class FSScanner
     {
-        public Folder GetFolder(string path) => new Folder(path);
+        public Folder GetFolder(string path) => (Folder)Folder.GetFolder(path);
 
         public async Task<Folder> GetFolderAsync(string path)
         {
