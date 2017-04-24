@@ -48,7 +48,7 @@
             <Button Grid.Column="2" IsDefault="True"
                     Margin="5,0,0,0" Padding="5"
                     IsEnabled="{Binding IsProcess, Converter={StaticResource InvertBooleanConverter}}"
-                    Command="{Binding ScanFolder}">
+                    Command="{Binding ScanFolderCommand}">
                 Сканировать
             </Button>
         </Grid>
@@ -63,7 +63,7 @@
                         <DataTemplate>
                             <Button Margin="2.5" Background="Transparent"
                                     BorderBrush="Transparent"
-                                    Command="{Binding DataContext.OpenFolder,
+                                    Command="{Binding DataContext.OpenFolderCommand,
                                                       RelativeSource={RelativeSource FindAncestor,
                                                                                      AncestorType=ItemsControl}}"
                                     CommandParameter="{Binding}">

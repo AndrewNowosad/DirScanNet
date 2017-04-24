@@ -42,25 +42,25 @@ namespace DirScanNet.ViewModels
             protected set => Set(ref isProcess, value);
         }
 
-        DelegateCommand scanFolder;
-        public ICommand ScanFolder
+        DelegateCommand scanFolderCommand;
+        public ICommand ScanFolderCommand
         {
             get
             {
-                if (scanFolder == null)
-                    scanFolder = new DelegateCommand(async o => await ScanAsync());
-                return scanFolder;
+                if (scanFolderCommand == null)
+                    scanFolderCommand = new DelegateCommand(async o => await ScanFolderAsync());
+                return scanFolderCommand;
             }
         }
 
-        DelegateCommand openFolder;
-        public ICommand OpenFolder
+        DelegateCommand openFolderCommand;
+        public ICommand OpenFolderCommand
         {
             get
             {
-                if (openFolder == null)
-                    openFolder = new DelegateCommand(o => Open((FSItem)o));
-                return openFolder;
+                if (openFolderCommand == null)
+                    openFolderCommand = new DelegateCommand(o => OpenFolder((FSItem)o));
+                return openFolderCommand;
             }
         }
 
@@ -75,14 +75,14 @@ namespace DirScanNet.ViewModels
             }
         }
 
-        protected async Task ScanAsync()
+        protected async Task ScanFolderAsync()
         {
             IsProcess = true;
             CurrentFolder = await new FSScanner().GetFolderAsync(CurrentPath);
             IsProcess = false;
         }
 
-        protected void Open(FSItem item)
+        protected void OpenFolder(FSItem item)
         {
             var folder = item as Folder;
             if (folder == null) return;
