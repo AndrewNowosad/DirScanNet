@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:Converters="clr-namespace:DirScanNet.Views.Converters"
         mc:Ignorable="d"
         Title="{Binding Title}"
@@ -16,6 +17,12 @@
         <Converters:BoolToVisibilityConverter x:Key="BoolToHiddenConverter" TrueValue="Hidden" FalseValue="Visible"/>
         <Converters:BoolToVisibilityConverter x:Key="BoolToVisibleConverter" TrueValue="Visible" FalseValue="Hidden"/>
     </Window.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SaveCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     
     <Grid>
         <Grid.RowDefinitions>

@@ -64,10 +64,20 @@ namespace DirScanNet.ViewModels
             }
         }
 
+        DelegateCommand saveCommand;
+        public ICommand SaveCommand
+        {
+            get
+            {
+                if (saveCommand == null)
+                    saveCommand = new DelegateCommand(o => SaveSettings());
+                return saveCommand;
+            }
+        }
+
         protected async Task ScanAsync()
         {
             IsProcess = true;
-            SaveSettings();
             CurrentFolder = await new FSScanner().GetFolderAsync(CurrentPath);
             IsProcess = false;
         }
