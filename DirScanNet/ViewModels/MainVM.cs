@@ -1,7 +1,8 @@
 ﻿using DirScanNet.Models;
 using DirScanNet.SettingsHelper;
+using System;
 using System.Collections.Generic;
-using System.IO;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -71,7 +72,7 @@ namespace DirScanNet.ViewModels
             get
             {
                 if (upLevelCommand == null)
-                    upLevelCommand = new DelegateCommand(o => GoToUpLevel());
+                    upLevelCommand = new DelegateCommand(async o => await GoToUpLevelAsync());
                 return upLevelCommand;
             }
         }
@@ -99,18 +100,22 @@ namespace DirScanNet.ViewModels
             var folder = item as Folder;
             if (folder == null) return;
             CurrentFolder = folder;
-            CurrentPath = CurrentFolder.FullPhysicalPath;
         }
 
-        protected void GoToUpLevel()
+        protected async Task GoToUpLevelAsync()
         {
-            CurrentPath = Path.GetDirectoryName(CurrentPath);
+            if (CurrentFolder == null) return;
+            IsProcess = true;
+            try { CurrentFolder = await new FSScanner().GetParentAsync(CurrentFolder); }
+            catch (NotSupportedException) { }
+            IsProcess = false;
         }
 
         public MainVM()
         {
             Title = "DirScanNet 1.0.0";
             LoadSettings();
+            PropertyChanged += OnPropertyChanged;
         }
 
         void LoadSettings()
@@ -134,6 +139,21 @@ namespace DirScanNet.ViewModels
             settings.Top = Top;
             settings.CurrentPath = CurrentPath;
             Settings.Save();
+        }
+
+        void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(CurrentFolder):
+                    OnCurrentFolderPropertyChanged();
+                    return;
+            }
+        }
+
+        void OnCurrentFolderPropertyChanged()
+        {
+            CurrentPath = CurrentFolder.FullPhysicalPath;
         }
     }
 }

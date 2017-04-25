@@ -4,9 +4,9 @@ namespace DirScanNet.Models
 {
     class File : FSItem
     {
-        static public FSItem GetFile(string path)
+        static public File GetFile(string path)
         {
-            if (ItemsCache.ContainsKey(path)) return ItemsCache[path];
+            if (ItemsCache.ContainsKey(path)) return (File)ItemsCache[path];
             return new File(path);
         }
 

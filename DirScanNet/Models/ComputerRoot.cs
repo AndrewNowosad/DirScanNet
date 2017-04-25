@@ -1,14 +1,15 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace DirScanNet.Models
 {
     class ComputerRoot : Folder
     {
-        static public FSItem GetComputerRoot()
+        static public ComputerRoot GetComputerRoot()
         {
             if (ItemsCache.ContainsKey(ComputerRootAlias))
-                return ItemsCache[ComputerRootAlias];
+                return (ComputerRoot)ItemsCache[ComputerRootAlias];
             return new ComputerRoot();
         }
 
@@ -16,6 +17,7 @@ namespace DirScanNet.Models
 
         protected override void RescanPath()
         {
+            childElements = new List<FSItem>();
             var drives = DriveInfo.GetDrives()
                                   .Select(d => d.RootDirectory.FullName);
             foreach (var drive in drives)

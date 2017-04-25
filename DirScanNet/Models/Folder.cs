@@ -7,9 +7,9 @@ namespace DirScanNet.Models
 {
     class Folder : FSItem
     {
-        static public FSItem GetFolder(string path)
+        static public Folder GetFolder(string path)
         {
-            if (ItemsCache.ContainsKey(path)) return ItemsCache[path];
+            if (ItemsCache.ContainsKey(path)) return (Folder)ItemsCache[path];
             return new Folder(path);
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace DirScanNet.Models
@@ -25,9 +26,22 @@ namespace DirScanNet.Models
             if (path == ComputerRootAlias)
                 Name = ComputerRootAlias;
             else
+            {
                 Name = Path.GetFileName(path);
+                if (Name == "") Name = FullPhysicalPath;
+            }
 
             ItemsCache[path] = this;
+        }
+
+        public Folder GetParent()
+        {
+            if (FullPhysicalPath == ComputerRootAlias)
+                throw new NotSupportedException($"Операция не поддерживается для {ComputerRootAlias}");
+            string parentPath = Path.GetDirectoryName(FullPhysicalPath);
+            if (parentPath == null)
+                return ComputerRoot.GetComputerRoot();
+            return Folder.GetFolder(parentPath);
         }
     }
 }
