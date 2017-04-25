@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace DirScanNet.Models
 {
@@ -14,16 +11,14 @@ namespace DirScanNet.Models
             return await Task.Run(() => GetFolder(path));
         }
 
-        public IReadOnlyList<Folder> GetRootFolders()
+        public ComputerRoot GetComputerRoot()
         {
-            return DriveInfo.GetDrives()
-                            .Select(d => GetFolder(d.RootDirectory.FullName))
-                            .ToList();
+            return (ComputerRoot)ComputerRoot.GetComputerRoot();
         }
 
-        public async Task<IReadOnlyList<Folder>> GetRootFoldersAsync()
+        public async Task<ComputerRoot> GetComputerRootAsync()
         {
-            return await Task.Run(() => GetRootFolders());
+            return await Task.Run(() => GetComputerRoot());
         }
     }
 }

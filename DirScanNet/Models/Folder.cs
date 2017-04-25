@@ -13,15 +13,15 @@ namespace DirScanNet.Models
             return new Folder(path);
         }
 
-        Folder(string path) : base(path)
+        protected Folder(string path) : base(path)
         {
             RescanPath();
         }
 
-        List<FSItem> childElements;
+        protected List<FSItem> childElements;
         public IReadOnlyList<FSItem> ChildElements => childElements;
 
-        void RescanPath()
+        protected virtual void RescanPath()
         {
             childElements = new List<FSItem>();
             IEnumerable<string> dirs;

@@ -5,6 +5,8 @@ namespace DirScanNet.Models
 {
     abstract class FSItem
     {
+        static public readonly string ComputerRootAlias = "<Компьютер>";
+
         static protected Dictionary<string, FSItem> ItemsCache { get; private set; }
             = new Dictionary<string, FSItem>();
 
@@ -20,7 +22,10 @@ namespace DirScanNet.Models
         protected FSItem(string path)
         {
             FullPhysicalPath = path;
-            Name = Path.GetFileName(path);
+            if (path == ComputerRootAlias)
+                Name = ComputerRootAlias;
+            else
+                Name = Path.GetFileName(path);
 
             ItemsCache[path] = this;
         }
