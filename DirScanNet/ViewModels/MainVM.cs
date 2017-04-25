@@ -1,6 +1,7 @@
 ﻿using DirScanNet.Models;
 using DirScanNet.SettingsHelper;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -64,6 +65,17 @@ namespace DirScanNet.ViewModels
             }
         }
 
+        DelegateCommand upLevelCommand;
+        public ICommand UpLevelCommand
+        {
+            get
+            {
+                if (upLevelCommand == null)
+                    upLevelCommand = new DelegateCommand(o => GoToUpLevel());
+                return upLevelCommand;
+            }
+        }
+
         DelegateCommand saveCommand;
         public ICommand SaveCommand
         {
@@ -87,6 +99,12 @@ namespace DirScanNet.ViewModels
             var folder = item as Folder;
             if (folder == null) return;
             CurrentFolder = folder;
+            CurrentPath = CurrentFolder.FullPhysicalPath;
+        }
+
+        protected void GoToUpLevel()
+        {
+            CurrentPath = Path.GetDirectoryName(CurrentPath);
         }
 
         public MainVM()

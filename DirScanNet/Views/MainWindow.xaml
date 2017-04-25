@@ -34,18 +34,24 @@
         <Grid Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Margin="0,0,5,0" Padding="5"
-                       VerticalAlignment="Center"
-                       Text="Путь:"/>
+            <Button Padding="5" Command="{Binding UpLevelCommand}">
+                <Path Stroke="Black" Fill="Black"
+                      Data="M5,0 l5,8.66 l-3.5,0 l0,5 l-3,0 l0,-5 l-3.5,0 l5,-8.66"/>
+            </Button>
 
-            <TextBox Text="{Binding CurrentPath}"
-                     Grid.Column="1" Padding="5"/>
+            <TextBlock Grid.Column="1" Text="Путь:"
+                       Margin="5,0" Padding="5"
+                       VerticalAlignment="Center"/>
 
-            <Button Grid.Column="2" IsDefault="True"
+            <TextBox Grid.Column="2" Padding="5"
+                     Text="{Binding CurrentPath}"/>
+
+            <Button Grid.Column="3" IsDefault="True"
                     Margin="5,0,0,0" Padding="5"
                     IsEnabled="{Binding IsProcess, Converter={StaticResource InvertBooleanConverter}}"
                     Command="{Binding ScanFolderCommand}">
@@ -61,7 +67,7 @@
                 <ItemsControl ItemsSource="{Binding Items}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button Margin="2.5" Background="Transparent"
+                            <Button Margin="0,2.5" Background="Transparent"
                                     BorderBrush="Transparent"
                                     Command="{Binding DataContext.OpenFolderCommand,
                                                       RelativeSource={RelativeSource FindAncestor,
