@@ -16,6 +16,7 @@
         <Converters:InvertBooleanConverter x:Key="InvertBooleanConverter"/>
         <Converters:BoolToVisibilityConverter x:Key="BoolToHiddenConverter" TrueValue="Hidden" FalseValue="Visible"/>
         <Converters:BoolToVisibilityConverter x:Key="BoolToVisibleConverter" TrueValue="Visible" FalseValue="Hidden"/>
+        <Converters:StringPathToBitmapSourceConverter x:Key="StringPathToBitmapSourceConverter"/>
     </Window.Resources>
 
     <i:Interaction.Triggers>
@@ -75,13 +76,18 @@
                                     CommandParameter="{Binding}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Padding="5" Text="{Binding Name}"/>
+                                    <Image Source="{Binding FullPhysicalPath,
+                                                            Converter={StaticResource StringPathToBitmapSourceConverter}}"/>
 
                                     <TextBlock Grid.Column="1" Padding="5"
+                                               Text="{Binding Name}"/>
+
+                                    <TextBlock Grid.Column="2" Padding="5"
                                                Text="{Binding Weight,
                                                               Converter={StaticResource FileLengthConverter}}"/>
 
